@@ -37,12 +37,43 @@ try
 					checkout scm
 
 					//sh ' flutter --version'
-					sh 'flutter build apk --debug'
-					
+					sh 'flutter build'
+
 				}
 			}
 		}
 	}
+
+	stage('Test') 
+	{
+		/* The lock step limits the number of builds running concurrently in a section of your Pipeline */
+		lock(resource: "${env.JOB_NAME}/20", inversePrecedence: true)  
+		{
+			/* The milestone step ensures that older builds of a job will not overwrite a newer build */
+			milestone 20
+			
+			/* Node declaration allocates an executor on Jenkins Machine */ 
+			node 
+			{				
+	
+				/* Executes a closure inside a docker container with the specified docker image */
+				dockerExecute(script: this,dockerImage: 'cirrusci/flutter')
+				{
+					/* Clean Jenkins Workspace */
+					deleteDir()
+		
+					/* Checkout Code from GitHub */
+					checkout scm
+
+					//sh ' flutter --version'
+					sh 'flutter test'
+
+				}
+			}
+		}
+	}
+	
+       
 }
 catch (Throwable err) 
 { 
