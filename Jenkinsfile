@@ -70,7 +70,7 @@ try
 					//sh ' flutter --version'
 					//sh 'flutter build'
 					//sh ' flutter build web '
-					sh 'firebase init --non-interactive'
+					sh 'firebase init hosting'
 					sh 'firebase use quiz-bf7e6 --token AIzaSyC6QAJffwBweDr3dNrsghjnHC7sGdAbFME'
 					sh	'firebase deploy --token AIzaSyC6QAJffwBweDr3dNrsghjnHC7sGdAbFME --non-interactive'
 
