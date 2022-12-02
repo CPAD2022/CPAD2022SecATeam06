@@ -30,7 +30,15 @@ try
 				/* Executes a closure inside a docker container with the specified docker image */
 				dockerExecute(script: this,dockerImage: 'cirrusci/flutter')
 				{
-					sh ' flutter --version'
+					/* Clean Jenkins Workspace */
+					deleteDir()
+		
+					/* Checkout Code from GitHub */
+					checkout scm
+
+					//sh ' flutter --version'
+					sh 'flutter build apk --debug'
+					
 				}
 			}
 		}
