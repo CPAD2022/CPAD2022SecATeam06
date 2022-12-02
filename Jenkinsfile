@@ -57,18 +57,14 @@ try
 			{				
 	
 				/* Executes a closure inside a docker container with the specified docker image */
-				dockerExecute(script: this,dockerImage: 'cirrusci/flutter')
-				{
-					/* Clean Jenkins Workspace */
-					deleteDir()
-		
-					/* Checkout Code from GitHub */
-					checkout scm
+				
+				appCenter apiToken: 'aa0a77384c98da8f21b549686967d759bbc8d912',
+				ownerName: '2021sp93061-wilp.bits-pilani.ac.in',
+				appName: 'Quiz',
+				pathToApp: 'build/app/outputs/apk/debug/app-debug.apk'
+					
 
-					//sh ' flutter --version'
-					sh 'flutter test'
-
-				}
+				
 			}
 		}
 	}
