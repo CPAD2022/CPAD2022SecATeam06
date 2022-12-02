@@ -10,7 +10,7 @@ import org.jenkinsci.plugins.workflow.steps.FlowInterruptedException
 try 
 {	
 	/* A stage block defines a conceptually distinct subset of tasks performed through the entire Pipeline */
-	stage('Central Build') 
+	stage('Building Quiz App') 
 	{
 		/* The lock step limits the number of builds running concurrently in a section of your Pipeline */
 		lock(resource: "${env.JOB_NAME}/10", inversePrecedence: true)  
@@ -44,7 +44,7 @@ try
 		}
 	}
 
-	stage('Test') 
+	stage('Publishing to App Center') 
 	{
 		/* The lock step limits the number of builds running concurrently in a section of your Pipeline */
 		lock(resource: "${env.JOB_NAME}/20", inversePrecedence: true)  
@@ -54,10 +54,9 @@ try
 			
 			/* Node declaration allocates an executor on Jenkins Machine */ 
 			node 
-			{				
-	
-				/* Executes a closure inside a docker container with the specified docker image */
-				
+			{
+				/* Publishing app to application center*/
+
 				appCenter apiToken: 'aa0a77384c98da8f21b549686967d759bbc8d912',
 				ownerName: '2021sp93061-wilp.bits-pilani.ac.in',
 				appName: 'Quiz',
@@ -66,9 +65,7 @@ try
 									
 			}
 		}
-	}
-	
-       
+	}       
 }
 catch (Throwable err) 
 { 
