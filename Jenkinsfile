@@ -70,8 +70,8 @@ try
 					//sh ' flutter --version'
 					//sh 'flutter build'
 					//sh ' flutter build web '
-					sh 'printf "hosting\nUse an existing project\nweb\nY" | firebase init'
-					//sh 'firebase init "hosting" "Use an existing project" "web" "Y"'
+					//sh 'printf "hosting\nUse an existing project\nweb\nY" | firebase init'
+					sh 'firebase init hosting \n web Y'
 					sh 'firebase use quiz-bf7e6 --token AIzaSyC6QAJffwBweDr3dNrsghjnHC7sGdAbFME'
 					sh	'firebase deploy --token AIzaSyC6QAJffwBweDr3dNrsghjnHC7sGdAbFME --non-interactive'
 
