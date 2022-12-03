@@ -38,7 +38,8 @@ try
 
 					//sh ' flutter --version'
 					//sh 'flutter build'
-					sh ' flutter build web '
+					//sh ' flutter build web '
+					sh ' flutter build'
 
 				}
 			}
@@ -58,13 +59,27 @@ try
 			{
 				/* Publishing app to application center*/
 
-				// appCenter apiToken: 'aa0a77384c98da8f21b549686967d759bbc8d912',
-				// ownerName: '2021sp93061-wilp.bits-pilani.ac.in',
-				// appName: 'Quiz',
-				// pathToApp: 'build/app/outputs/apk/debug/app-debug.apk',
-				// distributionGroups: 'Pandvaas'
+				appCenter apiToken: 'aa0a77384c98da8f21b549686967d759bbc8d912',
+				ownerName: '2021sp93061-wilp.bits-pilani.ac.in',
+				appName: 'Quiz',
+				pathToApp: 'build/app/outputs/apk/debug/app-debug.apk',
+				distributionGroups: 'Pandvaas'
 
-
+									
+			}
+		}
+	}  
+	stage('Publishing to Web') 
+	{
+		/* The lock step limits the number of builds running concurrently in a section of your Pipeline */
+		lock(resource: "${env.JOB_NAME}/20", inversePrecedence: true)  
+		{
+			/* The milestone step ensures that older builds of a job will not overwrite a newer build */
+			milestone 20
+			
+			/* Node declaration allocates an executor on Jenkins Machine */ 
+			node 
+			{
 				dockerExecute(script: this,dockerImage: 'rambabusaravanan/firebase')
 				{
 					//sh ' flutter --version'
