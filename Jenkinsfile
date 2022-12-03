@@ -10,40 +10,40 @@ import org.jenkinsci.plugins.workflow.steps.FlowInterruptedException
 try 
 {	
 	/* A stage block defines a conceptually distinct subset of tasks performed through the entire Pipeline */
-	stage('Building Quiz App') 
-	{
-		/* The lock step limits the number of builds running concurrently in a section of your Pipeline */
-		lock(resource: "${env.JOB_NAME}/10", inversePrecedence: true)  
-		{
-			/* The milestone step ensures that older builds of a job will not overwrite a newer build */
-			milestone 10
+	// stage('Building Quiz App') 
+	// {
+	// 	/* The lock step limits the number of builds running concurrently in a section of your Pipeline */
+	// 	lock(resource: "${env.JOB_NAME}/10", inversePrecedence: true)  
+	// 	{
+	// 		/* The milestone step ensures that older builds of a job will not overwrite a newer build */
+	// 		milestone 10
 			
-			/* Node declaration allocates an executor on Jenkins Machine */ 
-			node 
-			{				
-				/* Clean Jenkins Workspace */
-				//deleteDir()
+	// 		/* Node declaration allocates an executor on Jenkins Machine */ 
+	// 		node 
+	// 		{				
+	// 			/* Clean Jenkins Workspace */
+	// 			//deleteDir()
 		
-				/* Checkout Code from GitHub */
-				//checkout scm
+	// 			/* Checkout Code from GitHub */
+	// 			//checkout scm
 				
-				/* Executes a closure inside a docker container with the specified docker image */
-				dockerExecute(script: this,dockerImage: 'cirrusci/flutter')
-				{
-					/* Clean Jenkins Workspace */
-					deleteDir()
+	// 			/* Executes a closure inside a docker container with the specified docker image */
+	// 			dockerExecute(script: this,dockerImage: 'cirrusci/flutter')
+	// 			{
+	// 				/* Clean Jenkins Workspace */
+	// 				deleteDir()
 		
-					/* Checkout Code from GitHub */
-					checkout scm
+	// 				/* Checkout Code from GitHub */
+	// 				checkout scm
 
-					//sh ' flutter --version'
-					//sh 'flutter build'
-					sh ' flutter build web '
+	// 				//sh ' flutter --version'
+	// 				//sh 'flutter build'
+	// 				sh ' flutter build web '
 
-				}
-			}
-		}
-	}
+	// 			}
+	// 		}
+	// 	}
+	// }
 
 	stage('Publishing to App Center') 
 	{
@@ -71,9 +71,9 @@ try
 					//sh 'flutter build'
 					//sh ' flutter build web '
 					//sh 'printf "hosting\nUse an existing project\nweb\nY" | firebase init'
-					sh 'firebase init hosting \n web Y'
-					sh 'firebase use quiz-bf7e6 --token AIzaSyC6QAJffwBweDr3dNrsghjnHC7sGdAbFME'
-					sh	'firebase deploy --token AIzaSyC6QAJffwBweDr3dNrsghjnHC7sGdAbFME --non-interactive'
+					sh 'firebase init hosting:github'
+					// sh 'firebase use quiz-bf7e6 --token AIzaSyC6QAJffwBweDr3dNrsghjnHC7sGdAbFME'
+					// sh	'firebase deploy --token AIzaSyC6QAJffwBweDr3dNrsghjnHC7sGdAbFME --non-interactive'
 
 				}
 									
