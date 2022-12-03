@@ -152,7 +152,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
                             setState(() {});
                           },
-                          text: 'Create Game',
+                          text: 'Initiate Game',
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 70,
