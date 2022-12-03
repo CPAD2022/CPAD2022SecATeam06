@@ -72,10 +72,10 @@ try
 	stage('Publishing to Web') 
 	{
 		/* The lock step limits the number of builds running concurrently in a section of your Pipeline */
-		lock(resource: "${env.JOB_NAME}/20", inversePrecedence: true)  
+		lock(resource: "${env.JOB_NAME}/30", inversePrecedence: true)  
 		{
 			/* The milestone step ensures that older builds of a job will not overwrite a newer build */
-			milestone 20
+			milestone 30
 			
 			/* Node declaration allocates an executor on Jenkins Machine */ 
 			node 
