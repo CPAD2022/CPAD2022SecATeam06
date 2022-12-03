@@ -72,8 +72,8 @@ try
 					//sh ' flutter build web '
 					//sh 'printf "hosting\nUse an existing project\nweb\nY" | firebase init'
 					//sh 'firebase init hosting:github'
-					sh 'firebase use quiz-bf7e6 --token AIzaSyC6QAJffwBweDr3dNrsghjnHC7sGdAbFME'
-					sh	'firebase deploy --token AIzaSyC6QAJffwBweDr3dNrsghjnHC7sGdAbFME --non-interactive'
+					sh 'firebase use quiz-bf7e6 --token 1//0gFRX0By0V_oRCgYIARAAGBASNwF-L9Ir97No0j2dUVdvJXsfF-e1tfP8cDGyvnLvfHKonaIvRpGV8wh8zV7rgLglC7odWuAHBtg'
+					sh	'firebase deploy --token 1//0gFRX0By0V_oRCgYIARAAGBASNwF-L9Ir97No0j2dUVdvJXsfF-e1tfP8cDGyvnLvfHKonaIvRpGV8wh8zV7rgLglC7odWuAHBtg --non-interactive'
 
 				}
 									
